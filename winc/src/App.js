@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import {DrinkButtons} from "./components/DrinkButtons";
+import {coffee, tea} from "./utils/data";
+import {Button} from "./components/ui/Button";
+import {DrinkChoice} from "./components/DrinkChoice";
 
-function App() {
+
+
+export const App = () => {
+
+  const greeting = () => {
+    return(
+        "Welkom bij ons menu!"
+    )
+  }
+  const userDrink = tea
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{greeting()}</h1>
+      <DrinkButtons drinkTwo={coffee} drinkOne={tea} />
+        <DrinkChoice drink={userDrink} />
     </div>
   );
 }
 
-export default App;
+
