@@ -1,9 +1,9 @@
 import './App.css';
 import {DrinkButtons} from "./components/DrinkButtons";
 import {coffee, tea} from "./utils/data";
-import {Button} from "./components/ui/Button";
 import {DrinkChoice} from "./components/DrinkChoice";
-
+import {useState} from "react";
+import {DrinkSearch} from "./DrinkSearch";
 
 
 export const App = () => {
@@ -13,13 +13,21 @@ export const App = () => {
         "Welkom bij ons menu!"
     )
   }
-  const userDrink = tea
-
+    const [userDrink, setUserDrink] = useState();
   return (
     <div className="App">
-      <h1>{greeting()}</h1>
-      <DrinkButtons drinkTwo={coffee} drinkOne={tea} />
-        <DrinkChoice drink={userDrink} />
+       <h1 className={userDrink && "hidden"}>{greeting()}</h1>
+
+        {userDrink ? (
+                <DrinkChoice drink={userDrink} />
+
+            ): (
+            <>
+                'Please select a drink'
+                <DrinkSearch />
+                <DrinkButtons drinkTwo={coffee} drinkOne={tea} />
+            </>
+            )}
     </div>
   );
 }
